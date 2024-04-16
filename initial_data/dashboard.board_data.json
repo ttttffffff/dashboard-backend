@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "661cbfe3b936df45ad198989"
+  },
+  "id": 1,
+  "title": "Backlog"
+},
+{
+  "_id": {
+    "$oid": "661cbfe3b936df45ad19898a"
+  },
+  "id": 2,
+  "title": "TODO"
+},
+{
+  "_id": {
+    "$oid": "661cbfe3b936df45ad19898b"
+  },
+  "id": 3,
+  "title": "Doing"
+},
+{
+  "_id": {
+    "$oid": "661cbfe3b936df45ad19898c"
+  },
+  "id": 4,
+  "title": "Completed"
+}]
