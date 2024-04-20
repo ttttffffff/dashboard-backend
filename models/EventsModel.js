@@ -1,6 +1,10 @@
 const mongoose=require('mongoose')
 
 let EventsSchema = new mongoose.Schema({
+    id:{
+        type:String,
+        required:true
+    },
     title:{
         type:String,
         required:true
@@ -17,6 +21,10 @@ let EventsSchema = new mongoose.Schema({
         type:Boolean,
         default:false,
         require:false
+    },
+    durationEditable:{
+        type:Boolean,
+        default:true
     }
   });
   let EventsModel = mongoose.model('events', EventsSchema);

@@ -1,6 +1,9 @@
 const mongoose=require('mongoose')
 let BoardSchema = new mongoose.Schema({
-    id:Number,
+    id:{
+        type:String,
+        required:true
+    },
     title:{
         type:String,
         required:true

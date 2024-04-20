@@ -1,15 +1,16 @@
 var express = require('express');
 var router = express.Router();
+const checkloginMiddleware=require('../../middlewares/checkLoginMiddleware')
 
 const UserModel=require('../../models/UserModel')
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
+router.get('/', checkloginMiddleware,function(req, res, next) {
   res.send('respond with a resource');
 });
 //获取当前所有事件
 router.get('/users', function(req, res, next) {
-  UserModel.find().then((data)=>{
+  UserModel.find().select({_id:0}).then((data)=>{
     res.json({
         code:0,
         msg:'users read ok',
@@ -48,7 +49,7 @@ router.post('/users',function(req,res,next){
 //修改记录
 router.put('/users',function(req,res,next){
     //插入数据库
-    UserModel.findOneAndUpdate({_id:req.query._id},req.body,{new:true}).then((data)=>{
+    UserModel.findOneAndUpdate({id:req.query.id},req.body,{new:true}).then((data)=>{
       res.json({
           code:0,
           msg:"update ok",
@@ -65,8 +66,8 @@ router.put('/users',function(req,res,next){
   })
 //删除记录
 router.delete('/users',function(req,res,next){
-  let _id=req.query._id;
-  UserModel.deleteOne({_id:_id}).then((data)=>{
+  let id=req.query.id;
+  UserModel.deleteOne({id:id}).then((data)=>{
     if(!data.deletedCount){
         res.json({
             code:1001,

@@ -1,6 +1,9 @@
 let checkloginMiddleware=(req,res,next)=>{
-    if(!req.session.username){
-    return res.redirect('/login')
+    if(!req.session.email){
+    return res.json({
+      code:1003,
+      msg:'you have not login yet'
+    })
   }
   next();
   }

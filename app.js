@@ -11,20 +11,21 @@ const MongoStore=require('connect-mongo')
 const calendarRouter=require('./routes/api/initial_events')
 const usersRouter=require('./routes/api/users')
 const boardRouter=require('./routes/api/board')
+const authRouter=require('./routes/api/auth')
 var app = express();
-// app.use(session({
-//   name:'sid',
-//   secret:'wyt',
-//   saveUninitialized:false,
-//   resave:true,
-//   store:MongoStore.create({
-//     mongoUrl:'mongodb://127.0.0.1:27017/dashboard'
-//   }),
-//   cookie:{
-//     httpOnly:true,
-//     maxAge:1000*60*50
-//   }
-// }))
+app.use(session({
+  name:'sid',
+  secret:'wyt',
+  saveUninitialized:false,
+  resave:true,
+  store:MongoStore.create({
+    mongoUrl:'mongodb://127.0.0.1:27017/dashboard'
+  }),
+  cookie:{
+    httpOnly:true,
+    maxAge:1000*60*50
+  }
+}))
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -36,7 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.use('/', authRouter);
+app.use('/', authRouter);
 app.use('/api',calendarRouter)
 app.use('/api',usersRouter)
 app.use('/api',boardRouter)

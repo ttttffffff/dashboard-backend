@@ -1,7 +1,7 @@
 const mongoose=require('mongoose')
 let CardSchema = new mongoose.Schema({
     id:{
-        type:Number,
+        type:String,
         required:true
     },
     title:{

@@ -1,5 +1,9 @@
 const mongoose=require('mongoose')
 let UserSchema = new mongoose.Schema({
+    id:{
+        type:String,
+        required:true
+    },
     name:{
         type:Object,
         children:{

@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 //获取当前所有事件
 router.get('/calendar', function(req, res, next) {
-  EventsModel.find().then((data)=>{
+  EventsModel.find().select({_id:0,id:1,title:1,start:1,end:1}).then((data)=>{
     res.json({
         code:0,
         msg:'read ok',
@@ -52,7 +52,7 @@ router.post('/calendar',function(req,res,next){
 //修改记录
 router.put('/calendar',function(req,res,next){
     //插入数据库
-    EventsModel.findOneAndUpdate({_id:req.query._id},req.body,{new:true}).then((data)=>{
+    EventsModel.findOneAndUpdate({id:req.query.id},req.body,{new:true}).then((data)=>{
       res.json({
           code:0,
           msg:"update ok",
@@ -69,8 +69,8 @@ router.put('/calendar',function(req,res,next){
   })
 //删除记录
 router.delete('/calendar',function(req,res,next){
-  let _id=req.query._id;
-  EventsModel.deleteOne({_id:_id}).then((data)=>{
+  let id=req.query.id;
+  EventsModel.deleteOne({id:id}).then((data)=>{
     if(!data.deletedCount){
         res.json({
             code:1001,
