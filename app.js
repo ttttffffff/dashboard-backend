@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', authRouter);
+app.use('/api', authRouter);
 app.use('/api',calendarRouter)
 app.use('/api',usersRouter)
 app.use('/api',boardRouter)

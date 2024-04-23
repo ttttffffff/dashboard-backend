@@ -44,10 +44,11 @@ router.post('/login',function(req,res,next){
 })
 //这里改成post方式csrf跨站请求
 router.post('/logout',function(req,res,next){
-    req.session.destroy(()=>{
+    req.session.destroy().then(data=>{
         res.json({
             code:0,
-            msg:'logout success'
+            msg:'logout success',
+            data:data
         })
     })
 })
